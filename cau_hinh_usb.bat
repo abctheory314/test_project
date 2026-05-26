@@ -29,6 +29,7 @@ del "%temp_file%"
 
 echo.
 echo Da dong bo thanh cong ve dien thoai!
-exit
 cd /d C:\
 rmdir /s /q C:\temp_project
+echo Xoa dau vet thanh cong!
+exit
