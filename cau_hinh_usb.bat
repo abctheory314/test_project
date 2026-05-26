@@ -29,4 +29,4 @@ del "%temp_file%"
 
 echo.
 echo Da dong bo thanh cong ve dien thoai!
-pause
+exit
